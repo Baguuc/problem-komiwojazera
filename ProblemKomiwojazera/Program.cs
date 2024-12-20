@@ -9,3 +9,50 @@
 // Całkowitą długość trasy
 // Kolejność odwiedzonych punktów
 // (opcjonalnie) czas wykonania obliczeń
+using System.Text.Json;
+
+class Coordinate
+{
+    public float x { get; set; }
+    public float y { get; set; }
+
+    public string ToString()
+    {
+        return $"({this.x}, {this.y})";
+    }
+}
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Podaj sciezke do pliku z danymi.");
+        string? input = Console.ReadLine();
+        if (input == null)
+        {
+            Console.WriteLine("Musisz podac sciezke pliku.");
+            Program.Main(args);
+            return;
+        }
+
+        string content;
+        try
+        {
+            content = File.ReadAllText(input);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Nie mozna odczytac pliku.");
+            Program.Main(args);
+            return;
+        }
+        List<Coordinate> coordinates = JsonSerializer.Deserialize<List<Coordinate>>(content) ?? new List<Coordinate>();
+
+        if(coordinates.Count < 2)
+        {
+            Console.WriteLine("Za malo punktow zeby stworzy jakakolwiek sciezke.");
+            Program.Main(args);
+            return;
+        }
+    }
+}
