@@ -54,6 +54,43 @@ class Distance
     }
 }
 
+class Path
+{
+    public List<Coordinate> nodes { get; }
+    public float totalLength { get; }
+
+
+    public static Path Calculate(List<Coordinate> nodes)
+    {
+        float totalLength = 0;
+        for(int i = 0; i < nodes.Count - 2; i++)
+        {
+            Distance distance = Distance.Calculate(nodes[i], nodes[i + 1]);
+            totalLength += distance.length;
+        }
+
+        return new Path(nodes, totalLength);
+    }
+
+    public string ToString()
+    {
+        string nodesStr = "";
+        for(int i = 0; i < this.nodes.Count; i++)
+        {
+            Coordinate node = this.nodes[i];
+            nodesStr += $"{i+1}. {node.ToString()}\n";
+        }
+
+        return $"Dlugosc sciezki: {this.totalLength}\nKolejnosc odwiedzonych punktow:\n{nodesStr}";
+    }
+
+    private Path(List<Coordinate> nodes, float totalLength)
+    {
+        this.nodes = nodes;
+        this.totalLength = totalLength;
+    }
+}
+
 class Program
 {
     public static void Main(string[] args)
