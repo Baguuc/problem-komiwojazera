@@ -91,6 +91,37 @@ class Path
     }
 }
 
+class Util
+{
+    // L reprezentuje typ oryginalnego obiektu w liscie
+    // T reprezentuje typ uzyskiwany po "transformacji" obiektu uzyty do porownania
+    public static List<L> SortList<L, T>(List<L> list, Func<L, T> transform)
+        where T : IComparable
+    {
+        L[] arr = list.ToArray();
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            for (int j = 1; j < i + 1; j++)
+            {
+                T arrI = transform(arr[i]);
+                T arrJ = transform(arr[j]);
+
+                // jesli metoda CompareTo zwraca 1 lub wiecej znaczy to ze ten przedmiot jest wiekszy
+                if (arrJ.CompareTo(arrI) >= 1)
+                {
+                    L temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+
+        return arr.ToList();
+    }
+}
+
+
 class Program
 {
     public static void Main(string[] args)
