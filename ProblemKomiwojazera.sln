@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemKomiwojazera", "ProblemKomiwojazera\ProblemKomiwojazera.csproj", "{CE653CA5-B496-470A-9A06-F0070CDE9596}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE653CA5-B496-470A-9A06-F0070CDE9596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE653CA5-B496-470A-9A06-F0070CDE9596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE653CA5-B496-470A-9A06-F0070CDE9596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE653CA5-B496-470A-9A06-F0070CDE9596}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDA412E0-BFF8-41B4-B6D3-5A15DB00E476}
+	EndGlobalSection
+EndGlobal
