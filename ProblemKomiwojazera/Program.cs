@@ -154,5 +154,40 @@ class Program
             Program.Main(args);
             return;
         }
+
+        List<Path> allPossiblePaths = new List<Path>();
+
+        // obliczamy wszystkie mozliwe sciezki
+        for (int i = 0; i < coordinates.Count; i++)
+        {
+            List<Coordinate> currentCombination = new List<Coordinate>();
+            currentCombination.Add(coordinates[i]);
+
+            for (int j = 0; j < coordinates.Count; j++)
+            {
+                // pomijamy juz dodane punkty
+                if (i == j) continue;
+                if(currentCombination.Contains(coordinates[j])) continue;
+
+                currentCombination.Add(coordinates[j]);
+            }
+
+            Path path = Path.Calculate(currentCombination);
+            allPossiblePaths.Add(path);
+        }
+
+        // sortujemy sciezki od najmniejszego calkowitego dystansu
+        List<Path> sortedPaths = Util.SortList(allPossiblePaths, (path) => path.totalLength);
+
+        if(sortedPaths.Count == 0)
+        {
+            Console.WriteLine("Nie udalo sie obliczyc zadnej sciezki.");
+            Program.Main(args);
+            return;
+        }
+
+        // pierwsza sciezka bedzie najkrotsza po posortowaniu
+        Path shortestPath = sortedPaths.First();
+        Console.WriteLine(shortestPath.ToString());
     }
 }
