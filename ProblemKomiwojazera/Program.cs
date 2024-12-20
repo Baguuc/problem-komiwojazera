@@ -22,6 +22,38 @@ class Coordinate
     }
 }
 
+class Distance
+{
+    public Coordinate from { get; }
+    public Coordinate to { get; }
+    public float xLen { get; }
+    public float yLen { get; }
+    public float length { get; }
+
+    public static Distance Calculate(Coordinate from, Coordinate to)
+    {
+        float xLen = Distance.AbsValue(from.x - to.x);
+        float yLen = Distance.AbsValue(from.y - to.y);
+        // obliczamy dlugosc z twierdzenia pitagorasa
+        float length = MathF.Sqrt(MathF.Pow(xLen, 2) + MathF.Pow(yLen, 2));
+
+        return new Distance(from, to, xLen, yLen, length);
+    }
+
+    private static float AbsValue(float value)
+    {
+        return value >= 0
+            ? value
+            : -value;
+    }
+    private Distance(Coordinate from, Coordinate to, float xLen, float yLen, float length)
+    {
+        this.xLen = xLen;
+        this.yLen = yLen;
+        this.length = length;
+    }
+}
+
 class Program
 {
     public static void Main(string[] args)
